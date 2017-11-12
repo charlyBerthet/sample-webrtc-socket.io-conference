@@ -1,5 +1,6 @@
 // Config
 var useHttps = false;
+var port = (process.env.PORT || 8100);
 
 // imports
 var express = require('express')
@@ -27,7 +28,7 @@ else{
 
 
 // static for ui
-app.use(express.static('ui'))
+app.use(express.static(__dirname + '/ui'))
 
 
 var casters = {};
@@ -120,13 +121,13 @@ io.on('connection', function(socket){
 
 // HTTP
 if(!useHttps){
-  http.listen(8100, function(){
-    console.log('listening on *:8100');
+  http.listen(port, function(){
+    console.log('listening on *:' + port);
   });
 }
 // HTTPS
 else{
-  https.listen(8100, function(){
-    console.log('listening on *:8100');
+  https.listen(port, function(){
+    console.log('listening on *:'+ port);
   });
 }
