@@ -96,6 +96,7 @@ socket.on('answer', data => {
 socket.on('candidate', data => {
     console.log('candidate', data);
     if(casterPcs[data.username]){
+        console.log('add candidate', data);
         casterPcs[data.username].connection.addIceCandidate(new RTCIceCandidate(data.candidate)); 
     }
 });
