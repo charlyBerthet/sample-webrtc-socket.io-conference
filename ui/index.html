@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Culinarian POC : Realtime communication with WebRTC</title>
+
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+
+<body>
+
+  <h1 id="state">Waiting caster...</h1>
+
+  
+  <div id="videoCanvas">
+      <video id="localVideo" autoplay muted></video>
+      <video id="remoteVideo" autoplay></video>
+  </div>
+
+  <p>To be the caster, call you as your room is named.</p>
+  <p>Made with love</p>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="lib/adapter.js"></script>
+  <script src="main.js"></script>
+
+</body>
+
+</html>
