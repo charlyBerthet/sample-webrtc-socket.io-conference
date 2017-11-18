@@ -9,7 +9,7 @@ var fs = require('fs');
 var https = require('https');
 var http = require('http');
 var io = null;
-var ExpressPeerServer = require('./lib/peer').ExpressPeerServer;
+//var ExpressPeerServer = require('./lib/peer').ExpressPeerServer;
 var server = null;
 
 
