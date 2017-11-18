@@ -28,11 +28,11 @@ else{
   //io = require('socket.io')(https);
 }
 
-
+/*
 app.use('/peerjs', ExpressPeerServer(server, {
-    debug: true
+    //debug: true
 }));
-
+*/
 
 // static for ui
 app.use(express.static(__dirname + '/ui'))
