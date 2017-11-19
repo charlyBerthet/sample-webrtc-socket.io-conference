@@ -97,10 +97,7 @@ socket.on('candidate', data => {
     console.log('candidate', data);
     if(casterPcs[data.username]){
         console.log('add candidate', data);
-        casterPcs[data.username].connection.addIceCandidate(new RTCIceCandidate({
-            sdpMLineIndex: data.sdpMLineIndex,
-            candidate: data.candidate
-        })); 
+        casterPcs[data.username].connection.addIceCandidate(new RTCIceCandidate(data.candidate)); 
     }
 });
 
