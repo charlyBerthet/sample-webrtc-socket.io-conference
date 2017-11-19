@@ -42,7 +42,7 @@ socket.on('start-casting', () => {
 socket.on('connect-to', username => {
     console.log('connect-to', username, localStream);
     casterPcs[username] = {
-        connection : new RTCPeerConnection(configuration),
+        connection : new RTCPeerConnection(configuration, {optional: [{RtpDataChannels: true}]}),
         isStreamAdded : false
     };
     var pc = casterPcs[username];
@@ -105,7 +105,7 @@ socket.on('candidate', data => {
 socket.on('mentor-hangup', () => {
     console.log('mentor-hangup');
     listenerPc.close();
-    listenerPc = new RTCPeerConnection(configuration);
+    listenerPc = new RTCPeerConnection(configuration, {optional: [{RtpDataChannels: true}]});
     stateDiv.style.display = 'block';
     resetListenerPc();
     console.log('Mentor leave');
@@ -126,7 +126,7 @@ socket.on('caster-full', () => {
 
 
 function resetListenerPc(){
-    listenerPc = new RTCPeerConnection(configuration);
+    listenerPc = new RTCPeerConnection(configuration, {optional: [{RtpDataChannels: true}]});
     listenerPc.onaddstream = function (e) { 
         console.log('onaddstream', e);
         stateDiv.style.display = 'none';
