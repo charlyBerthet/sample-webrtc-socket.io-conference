@@ -11,7 +11,7 @@
 
     // PeerJS object
     //var peer = new Peer({ key: '32pmcplbh48nz5mi', debug: 3});
-    var peer = new Peer({host: 'localhost', port: 8100, path: '/peerjs'});
+    var peer = new Peer({host: 'culinarian-poc-webrtc.herokuapp.com', port: 443, path: '/peerjs'});
 
     peer.on('open', function(){
       $('#my-id').text(peer.id);
