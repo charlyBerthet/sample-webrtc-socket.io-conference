@@ -2,7 +2,7 @@
 
 ## Demonstration
 
-https://culinarian-poc-webrtc.herokuapp.com
+https://sample-webrtc-socket-io-confer.herokuapp.com
 
 ## Intallation
 
