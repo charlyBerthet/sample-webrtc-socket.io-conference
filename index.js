@@ -1,6 +1,10 @@
 // Config
 var useHttps = false;
 var port = (process.env.PORT || 8100);
+// Substitute your Twilio AccountSid and ApiKey details
+var ACCOUNT_SID = 'AC9e6c39ae91c23b148b2a16fac754d228';
+var API_KEY_SID = 'SK24b7671b999092a01cf351e44c965683';
+var API_KEY_SECRET = 'iWh6fUXI33J3q6RHX4w4OgaQl5DV57pF';
 
 // imports
 var express = require('express')
@@ -9,6 +13,9 @@ var fs = require('fs');
 var https = require('https');
 var http = require('http');
 var io = null;
+var AccessToken = require('twilio').jwt.AccessToken;
+var VideoGrant = AccessToken.VideoGrant;
+var cors = require('cors');
 
 
 if(!useHttps){
@@ -29,7 +36,7 @@ else{
 
 // static for ui
 app.use(express.static(__dirname + '/ui'))
-
+app.use(cors());
 
 var casters = {};
 var listeners = {};
@@ -116,6 +123,29 @@ io.on('connection', function(socket){
   });
 });
 
+
+
+app.get('/twilio-token/:room/:username', function (req, res, next) {
+  // Create an Access Token
+  var accessToken = new AccessToken(
+    ACCOUNT_SID,
+    API_KEY_SID,
+    API_KEY_SECRET
+  );
+
+  // Set the Identity of this token
+  console.log("username/room", req.params.username, req.params.room);
+  accessToken.identity = req.params.username;
+
+  // Grant access to Video
+  var grant = new VideoGrant();
+  grant.room = req.params.room;
+  accessToken.addGrant(grant);
+
+  // Serialize the token as a JWT
+  var jwt = accessToken.toJwt();
+  res.json({jwt: jwt})
+})
 
 
 
